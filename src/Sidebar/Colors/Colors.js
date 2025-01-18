@@ -7,7 +7,7 @@ export default function Colors({handleChange}) {
       <h2 className="sidebar-title">Colors</h2>
       <div className="">
         <label className="sidebar-label-container">
-            <input type="radio" value='' name='test1'/>
+            <input onChange={handleChange} type="radio" value='' name='test1'/>
             <span className="chekmark all" ></span>All
         </label>
 
@@ -32,10 +32,6 @@ export default function Colors({handleChange}) {
           name='test1'
           color='red'
         />
-        <label className="sidebar-label-container">
-            <input onChange={handleChange} type="radio" value='white' name='test1'/>
-            <span className="chekmark" style={{background: 'white', border: '2px solid black'}} ></span>White
-        </label>
         <Input 
           handleChange={handleChange}
           value='green'
@@ -43,6 +39,10 @@ export default function Colors({handleChange}) {
           name='test1'
           color='green'
         />
+        <label className="sidebar-label-container">
+            <input onChange={handleChange} type="radio" value='white' name='test1'/>
+            <span className="chekmark" style={{background: 'white', border: '2px solid black'}} ></span>White
+        </label>
 
       </div>
       

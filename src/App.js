@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './App.css';
 import Nav from './Navigation/Nav';
 import Products from './Products/Products';
 import Recommended from './Recommended/Recommended';
@@ -15,12 +14,12 @@ function App() {
   // Input Filter
   const [query, setQuery] = useState('');
 
-  const inputHandleChange = (e) => {
+  const handleInputChange = (e) => {
     setQuery(e.target.value)
   }
 
   const filteredItems = data.filter(product => 
-    product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase() !== -1)
+    product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) !== -1
   );
 
   // Radio Filter 
@@ -38,17 +37,19 @@ function App() {
 
     // Filtering input items 
     if (query) {
-      filteredProducts = filteredItems
+      filteredProducts = filteredItems;
     }
 
-    // Selected filter
+    // Applying selected filter
     if (selected) {
-      filteredProducts = filteredProducts.filter(({ category, color, newPrice, company, title })  => 
-        category === selected || 
-      color === selected || 
-      company === selected || 
-      newPrice === selected || 
-      title === selected)
+      filteredProducts = filteredProducts.filter(
+        ({ category, color, company, newPrice, title }) =>
+          category === selected ||
+          color === selected ||
+          company === selected ||
+          newPrice === selected ||
+          title === selected
+      );
     }
 
     return filteredProducts.map(({img, title, star, reviews,newPrice, prevPrice}) => 
@@ -67,9 +68,9 @@ function App() {
   return (
     <>
       <Sidebar handleChange={handleChange}/>
-      <Nav/>
-      <Recommended/>
-      <Products/>
+      <Nav query={query} handleInputChange={handleInputChange} />
+      <Recommended handleClick={handleClick} />
+      <Products result={result}/>
     </>
     
   );
